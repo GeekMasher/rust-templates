@@ -1,0 +1,3 @@
+# templates
+
+Rust Template Repo
