@@ -1,5 +1,5 @@
-name: '{{ project-name }}'
-description: '{{ project-name }}'
+name: 'custom-action'
+description: 'My Custom GitHub Action'
 
 inputs:
   repository:
