@@ -1,6 +1,6 @@
 # {{project-name}}
 
-{{project-name}} GitHub Action.
+{{description}}.
 
 ## Usage 
 
