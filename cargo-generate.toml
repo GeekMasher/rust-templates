@@ -1,6 +1,6 @@
 [template]
 cargo_generate_version = ">=0.10.0"
-sub_templates = ["actions"]
+sub_templates = ["actions", "cli"]
 
 [placeholders]
 description = { type="string", prompt="Description for the crate?" }

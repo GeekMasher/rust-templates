@@ -1,0 +1,3 @@
+{
+    "main": "cargo run -- --help"
+}
