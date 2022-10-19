@@ -5,7 +5,7 @@ Rust Template Repo
 ## Usage
 
 ```bash 
-cargo generate --git GeekMasher/rust-templates
+cargo generate GeekMasher/rust-templates
 ```
 
 ## Templates 
