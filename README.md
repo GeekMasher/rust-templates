@@ -1,6 +1,6 @@
 # templates
 
-Rust Template Repo
+[Rust Generate](https://crates.io/crates/cargo-generate) Template Repository
 
 ## Usage
 
@@ -11,4 +11,5 @@ cargo generate GeekMasher/rust-templates
 ## Templates 
 
 - [GitHub Actions](./actions)
+- [CLI](./cli)
 
