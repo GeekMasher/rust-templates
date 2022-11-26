@@ -1,39 +1,29 @@
-use clap::{Parser, Subcommand};
 use anyhow::Result;
-use log::*;
+use clap::Parser;
+use log::{info, debug, error, warn};
 
+mod cli;
 
-#[derive(Parser, Debug)]
-#[command(author, version, about, long_about = None)]
-struct Arguments {
-    #[clap(long, action = clap::ArgAction::Count)]
-    debug: u8,
-
-    #[clap(subcommand)]
-    commands: ArgumentCommands,
-
-}
-
-#[derive(Subcommand, Debug)]
-enum ArgumentCommands { }
+use crate::cli::{ArgumentCommands, Arguments};
 
 
 fn main() -> Result<()> {
     let arguments = Arguments::parse();
 
-    // Logging 
-    let mut level = log::LevelFilter::Info;
-    if arguments.debug > 0 {
-        info!("Debugging enabled...");
-        level = log::LevelFilter::Debug;
-    }
+    let log_level = match arguments.debug {
+        false => log::LevelFilter::Info,
+        true => log::LevelFilter::Debug
+    };
+
     env_logger::builder()
         .parse_default_env()
-        .filter_level(level)
-        .init();
+        .filter_level(log_level);
+
+    debug!("Finished initialising, starting main workflow...");
 
     // Subcommands 
     match &arguments.commands {
+        // TODO: Add the different sub commands here
         _ => {
             error!("Unsupported sub command...");
             todo!("Lets write some code...");
