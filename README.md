@@ -12,4 +12,6 @@ cargo generate GeekMasher/rust-templates
 
 - [GitHub Actions](./actions)
 - [CLI](./cli)
+- [Library](./lib)
+- [Web Server](./web-server)
 
