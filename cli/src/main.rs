@@ -19,7 +19,8 @@ fn main() -> Result<()> {
 
     env_logger::builder()
         .parse_default_env()
-        .filter_level(log_level);
+        .filter_level(log_level)
+        .init();
 
     if !arguments.disable_banner {
         println!(
