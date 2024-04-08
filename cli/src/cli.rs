@@ -2,7 +2,8 @@ use std::path::PathBuf;
 use clap::{Parser, Subcommand};
 use console::style;
 
-mod config;
+pub mod config;
+pub use config::Config;
 
 pub const VERSION_NUMBER: &str = env!("CARGO_PKG_VERSION");
 pub const AUTHOR: &str = env!("CARGO_PKG_AUTHORS");
