@@ -1,5 +1,8 @@
+use std::path::PathBuf;
 use clap::{Parser, Subcommand};
 use console::style;
+
+mod config;
 
 pub const VERSION_NUMBER: &str = env!("CARGO_PKG_VERSION");
 pub const AUTHOR: &str = env!("CARGO_PKG_AUTHORS");
@@ -9,22 +12,26 @@ pub const BANNER: &str = r#" !! MY RUST CLI BANNER !!"#;
 #[derive(Parser, Debug)]
 #[command(author, version, about, long_about = None)]
 pub struct Arguments {
-    #[clap(long, help = "Enable Debugging", default_value_t = false)]
+    /// Enable Debugging
+    #[clap(long, env, default_value_t = false)]
     pub debug: bool,
 
-    #[clap(long, help = "Disable Banner", default_value_t = false)]
+    /// Disable Banner
+    #[clap(long, default_value_t = false)]
     pub disable_banner: bool,
 
+    /// Configuration file path
     #[clap(
         short,
         long,
-        help = "Configuration file path",
-        default_value_t=String::from("./config.toml")
+        env,
+        default_value = "./config.toml"
     )]
-    pub config: String,
+    pub config: PathBuf,
 
+    /// Subcommands
     #[clap(subcommand)]
-    pub commands: ArgumentCommands,
+    pub commands: Option<ArgumentCommands>,
 }
 
 #[derive(Subcommand, Debug)]

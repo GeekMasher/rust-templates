@@ -9,7 +9,7 @@ rust-version = "1.70"
 
 [dependencies]
 # CLI parser
-clap = { version = "4.0", features = ["derive"] }
+clap = { version = "4.0", features = ["derive", "env"] }
 console = "0.15"
 dialoguer = "0.11"
 indicatif = "0.17"

@@ -2,13 +2,15 @@ use anyhow::Result;
 use log::{debug, error};
 
 mod cli;
-mod config;
 
 use crate::cli::*;
 
 fn main() -> Result<()> {
     let arguments = init();
     debug!("Finished initialising, starting main workflow...");
+
+    // Load Configuration
+    let config = Config::load(arguments.config)?;
 
     // Subcommands
     match &arguments.commands {
