@@ -3,6 +3,8 @@
 use log::{info, error};
 
 mod routes;
+mod models;
+
 use routes::index;
 
 #[rocket::main]
