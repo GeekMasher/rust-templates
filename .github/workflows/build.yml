@@ -24,6 +24,5 @@ jobs:
       run: |
         cargo install cargo-generate
         cd "${{ matrix.template }}"
-        cargo generate --test \
-          -d project-name="sample" \
-          -d description="A sample project"
+
+        cargo generate --test
