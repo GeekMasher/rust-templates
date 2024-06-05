@@ -1,5 +1,5 @@
-name: 'custom-action'
-description: 'My Custom GitHub Action'
+name: '{{project-name}}'
+description: '{{project-name}}'
 
 inputs:
   repository:
@@ -9,10 +9,8 @@ inputs:
   token:
     description: GitHub Personal Access Token
     default: ${{ github.token }}
-  
 
 runs:
   # https://docs.github.com/en/enterprise-cloud@latest/actions/creating-actions/creating-a-docker-container-action
   using: "docker"
-  image: "Dockerfile"
-
+  image: "actions/Containerfile"

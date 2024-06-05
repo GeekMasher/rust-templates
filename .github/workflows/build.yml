@@ -15,13 +15,14 @@ jobs:
 
     strategy:
       matrix:
-        template: ["actions", "cli", "web-server"]
+        template: ["actions", "cli", "web-server", "lib", "lib-derive"]
 
     steps:
     - uses: actions/checkout@v4
 
     - name: Build
       run: |
-        cd ${{ matrix.template }}
-        cargo build
+        cargo install cargo-generate
+        cd "${{ matrix.template }}"
 
+        cargo generate --test
