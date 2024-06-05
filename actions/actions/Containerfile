@@ -1,0 +1,3 @@
+FROM ghcr.io/{{project-name}}/{{project-name}}:0.1.0
+
+CMD ["{{project-name}}"]
