@@ -22,6 +22,8 @@ jobs:
 
     - name: Build
       run: |
-        cd ${{ matrix.template }}
-        cargo build
-
+        cargo install cargo-generate
+        cd "${{ matrix.template }}"
+        cargo generate --test \
+          -d project-name="sample" \
+          -d description="A sample project"
