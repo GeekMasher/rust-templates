@@ -15,7 +15,7 @@ jobs:
 
     strategy:
       matrix:
-        template: ["actions", "cli", "web-server"]
+        template: ["actions", "cli", "web-server", "lib", "lib-derive"]
 
     steps:
     - uses: actions/checkout@v4
