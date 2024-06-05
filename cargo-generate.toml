@@ -1,7 +1,8 @@
 [template]
 cargo_generate_version = ">=0.10.0"
-sub_templates = ["actions", "cli", "web-server", "lib"]
+sub_templates = ["actions", "cli", "web-server", "lib", "lib-derive"]
 
 [placeholders]
+project-name = { type="string", prompt="What is the name of the project?" }
 description = { type="string", prompt="Description for the crate?" }
-
+repository = { type="string", prompt="Repository URL?" }
