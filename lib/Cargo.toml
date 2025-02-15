@@ -7,7 +7,7 @@ edition = "2021"
 
 [dependencies]
 # Error handling
-thiserror = "1"
+thiserror = "2"
 # logging
 log = "0.4"
 
