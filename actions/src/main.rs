@@ -1,39 +1,37 @@
-// Logging functions
-use log::{info, debug, warn};
-// Easy Error enum magic
-use std::error::Error;
 use anyhow::Result;
+use ghactions::{group, groupend, ActionTrait};
+use log::info;
+use octocrab::{models::issues::Issue, params::State};
+use std::error::Error;
 
-// Import core GHActions macros
-use ghactions::{group, groupend};
-use octocrab::{params::State, models::issues::Issue};
+mod action;
 
-
+use action::Action;
 
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn Error>> {
-    let mut action = ghactions::init()?;
+    let action = Action::init()?;
 
-    if ! action.in_action() {
-        warn!("Failed to load action.yml file");
-    }
-
-    debug!("GitHub Action Name :: {}", &action.name.clone().unwrap_or_else(|| "N/A".to_string()));
+    info!("Action :: {:?}", action);
 
     group!("Main Workflow");
 
-    info!("Repository: `{}`", action.repository.display());
+    info!("Repository: `{}`", action.get_repository()?);
 
-    let client = action.client
-        .expect("Failed loading client..");
+    let client = action.octocrab()?;
 
     // https://docs.rs/octocrab/latest/octocrab/index.html
     // Example to get all the active issues
-    let issues_pages = client.issues(action.repository.owner, action.repository.name)
+    let issues_pages = client
+        .issues(
+            action.get_repository_owner()?,
+            action.get_repository_name()?,
+        )
         .list()
         .state(State::Open)
         .per_page(50)
-        .send().await?;
+        .send()
+        .await?;
 
     for issue in client.all_pages::<Issue>(issues_pages).await? {
         info!(" >> {} -> {}", issue.id, issue.title);
@@ -43,4 +41,3 @@ async fn main() -> Result<(), Box<dyn Error>> {
 
     Ok(())
 }
-
