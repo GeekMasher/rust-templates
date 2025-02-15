@@ -1,9 +1,6 @@
-use std::path::PathBuf;
 use clap::{Parser, Subcommand};
 use console::style;
-
-pub mod config;
-pub use config::Config;
+use std::path::PathBuf;
 
 pub const VERSION_NUMBER: &str = env!("CARGO_PKG_VERSION");
 pub const AUTHOR: &str = env!("CARGO_PKG_AUTHORS");
@@ -22,12 +19,7 @@ pub struct Arguments {
     pub disable_banner: bool,
 
     /// Configuration file path
-    #[clap(
-        short,
-        long,
-        env,
-        default_value = "./config.toml"
-    )]
+    #[clap(short, long, env, default_value = "./config.yml")]
     pub config: PathBuf,
 
     /// Subcommands
