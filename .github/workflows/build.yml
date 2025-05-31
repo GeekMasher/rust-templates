@@ -21,7 +21,17 @@ jobs:
     - uses: actions/checkout@v4
 
     - name: Build
+      env:
+        TEMPLATE: ${{ matrix.template }}
       run: |
-        cd ${{ matrix.template }}
-        cargo build
+        set -e
+
+        mkdir -p "./examples"
+        cd "./examples"
+
+        cargo install cargo-generate
+
+        cargo generate \
+          --path "../${TEMPLATE}" \
+          --name "${TEMPLATE}"
 
