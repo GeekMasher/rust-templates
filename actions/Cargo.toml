@@ -1,7 +1,9 @@
 [package]
-name = "action"
+name = "{{project-name}}"
 version = "0.1.0"
-edition = "2021"
+edition = "2024"
+
+rust-version = "1.85"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
@@ -13,6 +15,6 @@ anyhow = "1.0"
 thiserror = "2"
 dotenvy = "0.15"
 # Actions
-ghactions = { version = "0.13", features = ["dotenvy", "generate", "octocrab"] }
+ghactions = { version = "0.16", features = ["dotenvy", "generate", "octocrab"] }
 # GitHub API
-octocrab = "0.43"
+octocrab = "^0.44"
