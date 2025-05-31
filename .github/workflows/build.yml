@@ -15,7 +15,7 @@ jobs:
 
     strategy:
       matrix:
-        template: ["actions", "cli", "web-server"]
+        template: ["actions", "cli", "rocket-server"]
 
     steps:
     - name: Checkout
@@ -33,7 +33,6 @@ jobs:
         cargo install cargo-generate
 
         echo "Using template: ${TEMPLATE}"
-
         mkdir -p "./output"
         cd "./output"
   
