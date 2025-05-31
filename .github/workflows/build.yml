@@ -18,19 +18,26 @@ jobs:
         template: ["actions", "cli", "web-server"]
 
     steps:
-    - uses: actions/checkout@v4
+    - name: Checkout
+      uses: actions/checkout@v4
+
+    - name: "Setup - Rust Toolchain"
+      uses: dtolnay/rust-toolchain@stable
 
     - name: Build
       env:
         TEMPLATE: ${{ matrix.template }}
       run: |
         set -e
-
-        mkdir -p "./examples"
-        cd "./examples"
-
+        echo "Installing cargo-generate"
         cargo install cargo-generate
 
+        echo "Using template: ${TEMPLATE}"
+
+        mkdir -p "./output"
+        cd "./output"
+  
+        echo "Generating project from template: ${TEMPLATE}"
         cargo generate \
           --path "../${TEMPLATE}" \
           --name "${TEMPLATE}"
